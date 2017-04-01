@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :photos
   ActiveAdmin.routes(self)
   devise_for :users
+  resources :users, :only => [:show]
 end
