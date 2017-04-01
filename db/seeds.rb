@@ -12,6 +12,6 @@ user = User.create!(email: 'user@example.com', password: 'password', role: 'none
   User.create([{ name: Faker::Internet.user_name, email: Faker::Internet.free_email, password: 'password'}])
 end
 
-20.times do
+50.times do
   Photo.create([{title: Faker::Superhero.name, image: File.open(Dir.glob(File.join(Rails.root,'app', 'assets', 'images', 'sampleimages', '*')).sample), user_id: User.all.sample.id }])
 end

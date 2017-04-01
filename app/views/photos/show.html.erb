@@ -2,7 +2,12 @@
   <div class="col-md-6 col-md-offset-3">
     <h1><%= @photo.title %></h1>
     <%= image_tag @photo.image_url(:full) %>
-    <p>Average score: <%= @photo.average_score %></p>
+    <% if @photo.comments.first %>
+        <p>Average score: <%= @photo.average_score %></p>
+    <% else %>
+        <p>There are no rates for this photo </p>
+    <% end %>
+
     <div class="col-md-6 ">
       <% if can? :create, Comment %>
         <div >
