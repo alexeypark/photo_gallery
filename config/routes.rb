@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'photos#index'
+  resource :photos
   ActiveAdmin.routes(self)
-  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords'}
+  devise_for :users
 end

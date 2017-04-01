@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :name, presence: true, length: {minimum: 2, maximum: 20}
+
   def role?(r)
     role.include? r.to_s
   end
