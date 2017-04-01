@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comments = @photo.comments.order("created_at ASC")
 
     respond_to do |format|
-      format.html { render 'comments/index' }
+      format.html { render layout: !request.xhr? }
     end
   end
 
@@ -15,12 +15,12 @@ class CommentsController < ApplicationController
 
     if @comment.save
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to :back }
         format.js
       end
     else
       flash[:alert] = "Check the comment form, something went wrong."
-      render root_path
+      redirect_to :back
     end
   end
 
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     if @comment.user_id == current_user.id
       @comment.delete
       respond_to do |format|
-        format.html { redirect_to root_path }
+        format.html { redirect_to :back }
         format.js
       end
     end
@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:text)
+    params.require(:comment).permit(:text, :rate)
   end
 
   def set_photo

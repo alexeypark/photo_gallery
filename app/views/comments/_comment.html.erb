@@ -5,8 +5,11 @@
   <div class="comment-content">
     <%= comment.text %>
   </div>
+  <div>
+    Rate: <%= comment.rate %>
+  </div>
   <% if comment.user == current_user %>
-      <%= link_to photo_comment_path(photo, comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do %>
+      <%= link_to photo_comment_path(photo, comment), method: :delete, data: { confirm: "Are you sure?" } do %>
           <span class="glyphicon glyphicon-remove delete-comment"></span>
       <% end %>
   <% end %>
