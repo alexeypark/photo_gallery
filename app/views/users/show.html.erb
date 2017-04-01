@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-  <%@photos.each do |photo| %>
+  <% @photos.each do |photo| %>
       <tr>
         <td><%= image_tag photo.image_url(:thumb)%></td>
         <td><%= link_to photo.title, photo %></td>

@@ -1,0 +1,13 @@
+<div id="comment">
+  <div class="user-name">
+    <%= link_to comment.user.name, user_path(comment.user.id) if comment.user %>
+  </div>
+  <div class="comment-content">
+    <%= comment.text %>
+  </div>
+  <% if comment.user == current_user %>
+      <%= link_to photo_comment_path(photo, comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do %>
+          <span class="glyphicon glyphicon-remove delete-comment"></span>
+      <% end %>
+  <% end %>
+</div>

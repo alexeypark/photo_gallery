@@ -1,2 +1,11 @@
 <%= image_tag @photo.image_url(:full) %>
 <%= @photo.title %>
+
+<div class="comment-form col-sm-11">
+  <%= form_for [@photo, @photo.comments.build] do |f| %>
+      <%= f.text_field :text, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{@photo.id}" %>
+      <%= f.submit %>
+  <% end %>
+</div>
+
+<%= render @photo.comments, photo: @photo %>
