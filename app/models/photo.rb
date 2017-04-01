@@ -1,7 +1,9 @@
 class Photo < ApplicationRecord
   mount_uploader :image, PhotoUploader
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
+
+  validates :user_id, :title, :image, presence: true
 
   def average_score
     average = 0.0
