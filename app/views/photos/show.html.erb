@@ -1,12 +1,21 @@
-<%= image_tag @photo.image_url(:full) %>
-<%= @photo.title %>
-Average score: <%= @photo.average_score %>
-<div >
-  <%= simple_form_for [@photo, @photo.comments.build] do |f| %>
-      <%= f.input :text, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{@photo.id}" %>
-      <%= f.input :rate, collection: 1..5 %>
-      <%= f.submit %>
-  <% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1><%= @photo.title %></h1>
+    <%= image_tag @photo.image_url(:full) %>
+    <p>Average score: <%= @photo.average_score %></p>
+    <div class="col-md-6 ">
+      <% if can? :create, Comment %>
+        <div >
+          <h3>Add comment</h3>
+          <%= simple_form_for [@photo, @photo.comments.build] do |f| %>
+              <%= f.input :text, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{@photo.id}" %>
+              <%= f.input :rate, collection: 1..5 %>
+              <%= f.submit %>
+          <% end %>
+        </div>
+      <% end %>
+      <h3>Comments: </h3>
+      <%= render @comments, photo: @photo %>
+      </div>
+  </div>
 </div>
-
-<%= render @photo.comments, photo: @photo %>
