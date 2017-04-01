@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-    before_action :authenticate_user!, only: [:destroy]
+    before_action :authenticate_user!, only: [:new, :create, :destroy]
     before_action :set_photo, only: [:show, :destroy, :owned_post]
     before_action :owned_photo, only: [:destroy]
 
