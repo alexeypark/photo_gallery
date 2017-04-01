@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'photos#index'
-  resource :photos
+  resources :photos
   ActiveAdmin.routes(self)
   devise_for :users
 end
