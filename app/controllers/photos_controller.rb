@@ -47,7 +47,7 @@ class PhotosController < ApplicationController
 
     def owned_photo
       unless current_user == @photo.user
-        flash[:alert] = "That post doesn't belong to you!"
+        flash[:alert] = "That photo doesn't belong to you!"
         redirect_to root_path
       end
     end
