@@ -1,4 +1,12 @@
-<% @photos.each do |photo| %>
-  <%= image_tag photo.image_url(:thumb)%>
-  <%= link_to photo.title, photo %>
-<% end %>
+<div class="row">
+  <div class="col-md-offset-1">
+  <% @photos.each do |photo| %>
+    <div class="col-sm-3 col-md-3">
+      <%= image_tag photo.image_url(:thumb)%>
+      <p><%= link_to photo.title, photo %></p>
+      <p>By: <%= link_to photo.user.name, user_path(photo.user) %></p>
+    </div>
+  <% end %>
+
+</div>
+</div>

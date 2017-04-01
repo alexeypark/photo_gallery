@@ -1,16 +1,15 @@
 <div id="comment">
   <div class="user-name">
-    <%= link_to comment.user.name, user_path(comment.user.id) if comment.user %>
+    <% if comment.user == current_user %>
+        <%= link_to photo_comment_path(photo, comment), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <span class="glyphicon glyphicon-remove delete-comment"></span>
+        <% end %>
+    <% end %>
+    By: <%= link_to comment.user.name, user_path(comment.user.id) if comment.user %>, Rate: <%= comment.rate %>
   </div>
   <div class="comment-content">
     <%= comment.text %>
   </div>
-  <div>
-    Rate: <%= comment.rate %>
-  </div>
-  <% if comment.user == current_user %>
-      <%= link_to photo_comment_path(photo, comment), method: :delete, data: { confirm: "Are you sure?" } do %>
-          <span class="glyphicon glyphicon-remove delete-comment"></span>
-      <% end %>
-  <% end %>
 </div>
+
+<br>

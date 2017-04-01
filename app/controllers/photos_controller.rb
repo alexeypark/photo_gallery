@@ -8,10 +8,12 @@ class PhotosController < ApplicationController
     end
 
     def new
+      authorize! :create, Photo
       @photo = current_user.photos.build
     end
 
     def create
+      authorize! :create, Photo
       @photo = current_user.photos.build(photos_params)
 
       if @photo.save
@@ -24,9 +26,11 @@ class PhotosController < ApplicationController
     end
 
     def show
+      @comments = @photo.comments.order("created_at DESC")
     end
 
     def destroy
+      authorize! :destroy, @photo
       @photo.destroy
       redirect_to photos_path
     end

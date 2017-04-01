@@ -1,15 +1,8 @@
 class CommentsController < ApplicationController
   before_action :set_photo
 
-  def index
-    @comments = @photo.comments.order("created_at ASC")
-
-    respond_to do |format|
-      format.html { render layout: !request.xhr? }
-    end
-  end
-
   def create
+    authorize! :create, Comment
     @comment = @photo.comments.build(comment_params)
     @comment.user_id = current_user.id
 
@@ -26,7 +19,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @photo.comments.find(params[:id])
-
+    authorize! :destroy, @comment
     if @comment.user_id == current_user.id
       @comment.delete
       respond_to do |format|
