@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'comments/destroy'
-
   root 'photos#index'
   resources :photos do
-    resources :comments
+    resources :comments, :only => [:create, :destroy]
   end
   ActiveAdmin.routes(self)
   devise_for :users
