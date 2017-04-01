@@ -9,7 +9,7 @@
     <% end %>
 
     <div class="col-md-6 ">
-      <% if can? :create, Comment %>
+      <% if user_signed_in? %>
         <div >
           <h3>Add comment</h3>
           <%= simple_form_for [@photo, @photo.comments.build] do |f| %>
